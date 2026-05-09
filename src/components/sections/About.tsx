@@ -85,22 +85,23 @@ export default function About() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
               </div>
 
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col">
                 <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-neutral-500">
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-deep)]" />
                   {c.eyebrow}
                 </div>
-                <h3 className="font-serif-en text-[clamp(48px,7vw,84px)] font-light leading-[0.96] text-neutral-900">
-                  {c.title}
-                  <br />
-                  <span className="border-b border-neutral-900/80 pb-1">
-                    {c.underline}
-                  </span>
+                <h3 className="mt-5 font-serif-en text-[clamp(48px,7vw,84px)] font-light leading-[1.02] text-neutral-900">
+                  <span className="block">{c.title}</span>
+                  <span className="mt-1 block">{c.underline}</span>
                 </h3>
-                <p className="text-[12px] uppercase tracking-[0.2em] text-neutral-500">
+                <span
+                  aria-hidden
+                  className="mt-5 block h-px w-12 bg-neutral-900/70"
+                />
+                <p className="mt-4 text-[12px] uppercase tracking-[0.2em] text-neutral-500">
                   {c.sub}
                 </p>
-                <p className="mt-2 max-w-[40ch] text-[14px] leading-[1.85] text-neutral-700">
+                <p className="mt-5 max-w-[40ch] text-[14px] leading-[1.85] text-neutral-700">
                   {c.body}
                 </p>
               </div>
@@ -130,10 +131,10 @@ export default function About() {
           </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
           <div className="container-x relative flex h-full flex-col justify-end pb-10 md:pb-16">
-            <p className="font-serif-en text-[clamp(48px,9vw,140px)] font-light leading-[0.95] text-white">
+            <p className="font-serif-en text-[clamp(48px,9vw,140px)] font-light leading-[1] text-white">
               TERRIS
             </p>
-            <p className="mt-2 text-[12px] uppercase tracking-[0.32em] text-white/80 md:text-[14px]">
+            <p className="mt-5 text-[12px] uppercase tracking-[0.32em] text-white/80 md:mt-6 md:text-[14px]">
               asset management
             </p>
           </div>
