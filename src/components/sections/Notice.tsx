@@ -46,7 +46,7 @@ export default function Notice() {
           </div>
         </div>
 
-        <ul className="mt-12 divide-y divide-[var(--color-line)] border-y border-[var(--color-line)]">
+        <ul className="mt-10 divide-y divide-[var(--color-line)] border-y border-[var(--color-line)] md:mt-12">
           {siteData.notices.map((n, i) => (
             <motion.li
               key={i}
@@ -61,15 +61,15 @@ export default function Notice() {
             >
               <a
                 href="#"
-                className="group flex items-center gap-4 py-5 transition-base hover:bg-[var(--color-bg-soft)]/40 md:gap-8 md:py-6"
+                className="group flex items-center gap-3 py-4 transition-base hover:bg-[var(--color-bg-soft)]/40 sm:gap-4 md:gap-8 md:py-6"
               >
-                <span className="w-[88px] flex-none text-[12px] tracking-[0.06em] text-neutral-500 md:w-[120px] md:text-[13px]">
+                <span className="w-[72px] flex-none text-[11px] tracking-[0.06em] text-neutral-500 sm:w-[88px] sm:text-[12px] md:w-[120px] md:text-[13px]">
                   {n.date}
                 </span>
                 <span className="hidden flex-none rounded-full border border-[var(--color-line)] px-3 py-1 text-[11px] tracking-[0.06em] text-neutral-500 md:inline-block">
                   {n.tag}
                 </span>
-                <span className="flex-1 truncate text-[14px] font-medium text-neutral-900 transition-base group-hover:text-black md:text-[15px]">
+                <span className="kr-keep flex-1 truncate text-[13px] font-medium text-neutral-900 transition-base group-hover:text-black sm:text-[14px] md:text-[15px]">
                   {n.title}
                 </span>
                 <span

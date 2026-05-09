@@ -25,7 +25,7 @@ export default function CEO() {
               as="p"
               unit="word"
               stagger={0.05}
-              className="mt-8 font-serif-kr text-[clamp(22px,2.8vw,36px)] font-medium leading-[1.45] md:max-w-[28ch] md:text-right md:ml-auto"
+              className="mt-8 font-serif-kr kr-keep text-[clamp(20px,2.8vw,36px)] font-medium leading-[1.45] md:max-w-[28ch] md:text-right md:ml-auto"
             >
               {ceo.quote}
             </SplitTextReveal>
@@ -79,7 +79,7 @@ export default function CEO() {
                     delay: i * 0.06,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="max-w-[52ch] text-[14px] leading-[1.85] text-white/75"
+                  className="kr-keep max-w-[52ch] text-[13.5px] leading-[1.85] text-white/75 md:text-[14px]"
                 >
                   {line}
                 </motion.p>
@@ -107,7 +107,7 @@ export default function CEO() {
         </div>
 
         {/* Stats */}
-        <div className="mt-20 grid grid-cols-1 gap-8 border-t border-white/10 pt-12 md:mt-28 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 md:mt-28 md:grid-cols-3 md:pt-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -148,11 +148,12 @@ export default function CEO() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="col-span-2 md:col-span-1"
           >
             <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
               주요 사업분야
             </p>
-            <p className="mt-3 max-w-[24ch] text-[14px] leading-[1.7] text-white/80">
+            <p className="kr-keep mt-3 max-w-[28ch] text-[13px] leading-[1.7] text-white/80 md:text-[14px]">
               국내외 REF, PFV 투자 운용 — REITs, Infrastructure, Securities를
               아우르는 부동산 자산 운용.
             </p>
@@ -185,15 +186,13 @@ export default function CEO() {
                   delay: i * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="aspect-[3/4] w-[260px] flex-none md:w-[300px]"
+                className="aspect-[3/4] w-[220px] flex-none sm:w-[260px] md:w-[300px]"
               >
                 <SpotlightCard
                   glow="rgba(200,169,106,0.18)"
-                  className="relative h-full overflow-hidden"
+                  className="card-lift card-lift-dark relative h-full overflow-hidden"
                 >
                   <div
-                    data-cursor="view"
-                    data-cursor-label="View"
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-[1400ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
                     style={{ backgroundImage: `url(${projectImages[i]})` }}
                   />

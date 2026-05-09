@@ -21,11 +21,11 @@ export default function CoreCompetency() {
               as="h2"
               unit="word"
               stagger={0.05}
-              className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28]"
+              className="mt-6 font-serif-kr kr-keep text-[clamp(26px,3.4vw,42px)] font-medium leading-[1.28]"
             >
               {"구조적인 분석 기반으로\n자산의 미래 가치를 설계합니다."}
             </SplitTextReveal>
-            <p className="mt-6 max-w-[42ch] text-[14px] leading-[1.85] text-white/60">
+            <p className="kr-keep mt-6 max-w-[42ch] text-[13.5px] leading-[1.85] text-white/60 md:text-[14px]">
               자산운용사·사모펀드·자문회사 등에서 실무 경험을 축적한 전문
               인력들로 구성된 회사. 부동산 시장의 위기 대응과 정확한 판단을
               기반으로 부동산의 미래 가치를 실천합니다.
@@ -47,7 +47,7 @@ export default function CoreCompetency() {
               }}
               className="group flex flex-col gap-5"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-800" data-cursor="view" data-cursor-label={c.eyebrow}>
+              <div className="card-lift card-lift-dark relative aspect-[4/3] overflow-hidden bg-neutral-800">
                 <div
                   className="absolute inset-0 bg-cover bg-center grayscale transition-[transform,filter] duration-[1400ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06] group-hover:grayscale-0"
                   style={{ backgroundImage: `url(${competencyImages[i]})` }}
@@ -62,10 +62,10 @@ export default function CoreCompetency() {
                 </span>
               </div>
               <div>
-                <h3 className="font-serif-kr text-[18px] font-semibold leading-[1.4] md:text-[19px]">
+                <h3 className="font-serif-kr kr-keep text-[17px] font-semibold leading-[1.4] md:text-[19px]">
                   {c.title}
                 </h3>
-                <p className="mt-3 text-[13px] leading-[1.8] text-white/60">
+                <p className="kr-keep mt-3 text-[12.5px] leading-[1.8] text-white/60 md:text-[13px]">
                   {c.body}
                 </p>
               </div>

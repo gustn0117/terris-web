@@ -1,11 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { strategyImage, siteData } from "@/lib/site";
 import SplitTextReveal from "@/components/effects/SplitTextReveal";
 import SpotlightCard from "@/components/effects/SpotlightCard";
 
 export default function Strategy() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start end", "end start"],
+  });
+  const heroY = useTransform(heroProgress, [0, 1], ["-10%", "10%"]);
+  const heroScale = useTransform(heroProgress, [0, 1], [1.05, 1]);
+
   return (
     <section
       id="strategy"
@@ -23,41 +32,47 @@ export default function Strategy() {
               as="h2"
               unit="word"
               stagger={0.05}
-              className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28] text-neutral-900"
+              className="mt-6 font-serif-kr kr-keep text-[clamp(26px,3.4vw,42px)] font-medium leading-[1.28] text-neutral-900"
             >
               {"전략은 넓게, 실행은 깊게.\n성과는 반드시 만들어냅니다."}
             </SplitTextReveal>
           </div>
           <div className="md:col-span-5 md:pt-2">
-            <p className="max-w-[44ch] text-[14px] leading-[1.85] text-neutral-700">
+            <p className="kr-keep max-w-[44ch] text-[13.5px] leading-[1.85] text-neutral-700 md:text-[14px]">
               Value-Add를 중심으로 다양한 투자 전략을 유기적으로 운용합니다.
               구조화된 투자 프로세스와 위험관리 절차로 투자자의 자산을 보호하는
-              "보이지 않는 방패"를 운용합니다.
+              &ldquo;보이지 않는 방패&rdquo;를 운용합니다.
             </p>
           </div>
         </div>
 
         {/* Hero image */}
         <motion.div
+          ref={heroRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-12 aspect-[16/7] overflow-hidden md:mt-20"
+          className="relative mt-10 aspect-[16/9] overflow-hidden sm:aspect-[16/8] md:mt-20 md:aspect-[16/7]"
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${strategyImage})` }}
-          />
+          <motion.div
+            style={{ y: heroY, scale: heroScale }}
+            className="absolute -inset-y-[12%] inset-x-0"
+          >
+            <div
+              className="h-full w-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${strategyImage})` }}
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
         </motion.div>
 
         {/* Specialty area */}
-        <div className="mt-20 md:mt-28">
+        <div className="mt-16 md:mt-28">
           <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-500">
             Area of Specialty
           </p>
-          <h3 className="mt-4 font-serif-kr text-[clamp(22px,2.6vw,32px)] font-medium leading-[1.35] text-neutral-900">
+          <h3 className="kr-keep mt-4 font-serif-kr text-[clamp(20px,2.6vw,32px)] font-medium leading-[1.35] text-neutral-900">
             <span className="font-serif-en italic text-[var(--color-accent-deep)]">
               Value-Add
             </span>
@@ -66,7 +81,7 @@ export default function Strategy() {
             다섯 가지 투자 전략을 유기적으로 운용합니다.
           </h3>
 
-          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-[var(--color-line)] bg-[var(--color-line)] md:mt-14 md:grid-cols-5">
+          <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-md border border-[var(--color-line)] bg-[var(--color-line)] sm:grid-cols-2 md:mt-14 md:grid-cols-5">
             {siteData.specialty.map((s, i) => (
               <motion.div
                 key={s.key}
@@ -93,12 +108,12 @@ export default function Strategy() {
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h4 className="font-serif-en text-[18px] font-medium leading-[1.2] md:text-[19px]">
+                <h4 className="font-serif-en text-[17px] font-medium leading-[1.2] md:text-[19px]">
                   {s.title}
                 </h4>
                 <p
                   className={[
-                    "text-[12.5px] leading-[1.7]",
+                    "kr-keep text-[12.5px] leading-[1.7]",
                     s.featured ? "text-white/80" : "text-neutral-600",
                   ].join(" ")}
                 >
@@ -115,17 +130,17 @@ export default function Strategy() {
         </div>
 
         {/* Investment Process */}
-        <div className="mt-20 md:mt-28">
+        <div className="mt-16 md:mt-28">
           <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-500">
             Investment Process
           </p>
-          <h3 className="mt-4 font-serif-kr text-[clamp(22px,2.6vw,32px)] font-medium leading-[1.35] text-neutral-900">
+          <h3 className="kr-keep mt-4 font-serif-kr text-[clamp(20px,2.6vw,32px)] font-medium leading-[1.35] text-neutral-900">
             구조화된 투자 프로세스를 통해
             <br />
             안정적인 성과를 만듭니다.
           </h3>
 
-          <ol className="mt-10 grid grid-cols-1 gap-4 md:mt-14 md:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-3">
             {siteData.strategy.map((s, i) => (
               <motion.li
                 key={s.step}

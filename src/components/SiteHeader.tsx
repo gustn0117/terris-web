@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { siteData } from "@/lib/site";
 import Magnetic from "@/components/effects/Magnetic";
 
@@ -96,32 +97,61 @@ export default function SiteHeader() {
       </div>
 
       {/* Mobile drawer */}
-      <div
-        className={[
-          "md:hidden overflow-hidden transition-base",
-          open ? "max-h-[80vh] border-t border-[var(--color-line)] bg-white" : "max-h-0",
-        ].join(" ")}
-      >
-        <div className="container-x py-6">
-          <ul className="flex flex-col divide-y divide-[var(--color-line)]">
-            {siteData.menu.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={[
-                    "flex items-center justify-between py-4 text-[15px] font-medium",
-                    isActive(item.href) ? "text-black" : "text-neutral-800",
-                  ].join(" ")}
-                >
-                  <span>{item.label}</span>
-                  <span className="text-neutral-400">→</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="drawer"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-[var(--color-line)] bg-white md:hidden"
+          >
+            <div className="container-x py-6">
+              <ul className="flex flex-col divide-y divide-[var(--color-line)]">
+                {siteData.menu.map((item, i) => (
+                  <motion.li
+                    key={item.href}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -16 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.08 + i * 0.06,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={[
+                        "group flex items-center justify-between py-4 text-[16px] font-medium",
+                        isActive(item.href) ? "text-black" : "text-neutral-800",
+                      ].join(" ")}
+                    >
+                      <span className="flex items-center gap-3">
+                        <span
+                          className={[
+                            "inline-block h-1 w-1 rounded-full bg-[var(--color-accent)] transition-base",
+                            isActive(item.href)
+                              ? "scale-100 opacity-100"
+                              : "scale-0 opacity-0",
+                          ].join(" ")}
+                          aria-hidden
+                        />
+                        <span>{item.label}</span>
+                      </span>
+                      <span className="text-neutral-400 transition-base group-hover:translate-x-1 group-hover:text-neutral-900">
+                        →
+                      </span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

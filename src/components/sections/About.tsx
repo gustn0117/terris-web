@@ -49,13 +49,13 @@ export default function About() {
               as="h2"
               unit="word"
               stagger={0.05}
-              className="mt-6 font-serif-kr text-[clamp(28px,3.6vw,44px)] font-medium leading-[1.25] text-neutral-900"
+              className="mt-6 font-serif-kr kr-keep text-[clamp(26px,3.6vw,44px)] font-medium leading-[1.25] text-neutral-900"
             >
               {"보는 것이 다르니까,\n만드는 가치도 다릅니다."}
             </SplitTextReveal>
           </div>
           <div className="md:col-span-5">
-            <p className="max-w-[42ch] text-[14px] leading-[1.85] text-neutral-600">
+            <p className="kr-keep max-w-[42ch] text-[13px] leading-[1.85] text-neutral-600 md:text-[14px]">
               테리스 자산운용은 보이는 가치보다, 다음 단계의 가능성을 함께
               봅니다. 보이지 않는 가치를 발견하고, 숫자 기반의 명확한 운용으로
               결과로 증명합니다.
@@ -77,12 +77,16 @@ export default function About() {
               }}
               className="group flex flex-col gap-6"
             >
-              <div className="relative aspect-[5/4] overflow-hidden bg-neutral-200">
+              <div className="card-lift relative aspect-[5/4] overflow-hidden bg-neutral-200">
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-base group-hover:scale-[1.04]"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-[1400ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.05]"
                   style={{ backgroundImage: `url(${c.image})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent" />
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-px w-0 bg-[var(--color-accent-deep)] transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:w-full"
+                />
               </div>
 
               <div className="flex flex-col">
@@ -90,7 +94,7 @@ export default function About() {
                   <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-deep)]" />
                   {c.eyebrow}
                 </div>
-                <h3 className="mt-5 font-serif-en text-[clamp(48px,7vw,84px)] font-light leading-[1.02] text-neutral-900">
+                <h3 className="mt-5 font-serif-en text-[clamp(44px,7vw,84px)] font-light leading-[1.02] text-neutral-900">
                   <span className="block">{c.title}</span>
                   <span className="mt-1 block">{c.underline}</span>
                 </h3>
@@ -101,7 +105,7 @@ export default function About() {
                 <p className="mt-4 text-[12px] uppercase tracking-[0.2em] text-neutral-500">
                   {c.sub}
                 </p>
-                <p className="mt-5 max-w-[40ch] text-[14px] leading-[1.85] text-neutral-700">
+                <p className="kr-keep mt-5 max-w-[40ch] text-[13.5px] leading-[1.85] text-neutral-700 md:text-[14px]">
                   {c.body}
                 </p>
               </div>

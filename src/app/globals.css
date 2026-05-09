@@ -14,8 +14,9 @@
   --color-accent-deep: #1c2e4a;
 
   --max-w: 1280px;
-  --gutter: clamp(20px, 4vw, 64px);
-  --section-py: clamp(80px, 12vw, 160px);
+  --gutter: clamp(18px, 4vw, 64px);
+  --section-py: clamp(56px, 11vw, 160px);
+  --section-py-tight: clamp(40px, 9vw, 120px);
 }
 
 @theme inline {
@@ -80,6 +81,34 @@ body {
 .font-display-en {
   font-family: var(--font-display-en);
   letter-spacing: -0.045em;
+}
+
+/* Korean text helpers — keep words intact, balance lines */
+.kr-balance {
+  word-break: keep-all;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.kr-keep {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* Card lift — used on hoverable surface cards */
+.card-lift {
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 36px 60px -32px rgba(0, 0, 0, 0.32),
+    0 12px 24px -16px rgba(0, 0, 0, 0.18);
+}
+.card-lift-dark:hover {
+  box-shadow: 0 36px 60px -32px rgba(0, 0, 0, 0.6),
+    0 12px 24px -16px rgba(200, 169, 106, 0.16);
 }
 
 .container-x {

@@ -86,10 +86,17 @@ function Word({
 
 export default function Philosophy() {
   const ref = useRef<HTMLDivElement>(null);
+  const skylineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 0.9", "end 0.35"],
   });
+  const { scrollYProgress: skylineProgress } = useScroll({
+    target: skylineRef,
+    offset: ["start end", "end start"],
+  });
+  const skylineY = useTransform(skylineProgress, [0, 1], ["-10%", "10%"]);
+  const skylineScale = useTransform(skylineProgress, [0, 1], [1.05, 1]);
 
   const tokens = sentence.split(" ");
   const total = tokens.length;
@@ -226,19 +233,25 @@ export default function Philosophy() {
           </div>
 
           <motion.div
+            ref={skylineRef}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-15%" }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="relative aspect-[4/3] overflow-hidden md:col-span-8"
           >
-            <div
-              className="absolute inset-0 bg-cover bg-center grayscale-[0.2]"
-              style={{ backgroundImage: `url(${philosophySkyline})` }}
-            />
+            <motion.div
+              style={{ y: skylineY, scale: skylineScale }}
+              className="absolute -inset-y-[12%] inset-x-0"
+            >
+              <div
+                className="h-full w-full bg-cover bg-center grayscale-[0.2]"
+                style={{ backgroundImage: `url(${philosophySkyline})` }}
+              />
+            </motion.div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white">
-              <span className="font-serif-en text-[18px] italic">
+              <span className="font-serif-en text-[16px] italic sm:text-[18px]">
                 Seoul · Real Estate
               </span>
               <span className="text-[11px] uppercase tracking-[0.22em] text-white/70">

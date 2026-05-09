@@ -57,17 +57,17 @@ export default function Hero() {
         />
       </motion.div>
 
-      <div className="container-x relative flex min-h-[100svh] flex-col items-center justify-center pb-[clamp(80px,12vh,160px)] pt-[140px] text-center md:pt-[160px]">
+      <div className="container-x relative flex min-h-[100svh] flex-col items-center justify-center pb-[clamp(60px,11vh,160px)] pt-[112px] text-center md:pt-[160px]">
         {/* Eyebrow */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 flex items-center justify-center gap-3 text-[11px] font-medium uppercase tracking-[0.28em] text-neutral-500 md:mb-10 md:text-[12px]"
+          className="mb-6 flex items-center justify-center gap-2 text-[10px] font-medium uppercase tracking-[0.24em] text-neutral-500 sm:gap-3 sm:text-[11px] sm:tracking-[0.28em] md:mb-10 md:text-[12px]"
         >
-          <span className="inline-block h-px w-8 bg-neutral-400" />
+          <span className="inline-block h-px w-6 bg-neutral-400 sm:w-8" />
           <span>Terris partners · Asset Management</span>
-          <span className="inline-block h-px w-8 bg-neutral-400" />
+          <span className="inline-block h-px w-6 bg-neutral-400 sm:w-8" />
         </motion.div>
 
         {/* Giant TERRIS — heavy serif filled with dark metallic gradient */}
@@ -114,7 +114,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif-kr mx-auto max-w-[36ch] break-keep text-balance text-[20px] font-medium leading-[1.5] text-neutral-900 md:text-[28px]"
+            className="font-serif-kr kr-balance mx-auto max-w-[36ch] text-[16px] font-medium leading-[1.55] text-neutral-900 sm:text-[20px] md:text-[28px]"
           >
             {siteData.tagline}
           </motion.p>
