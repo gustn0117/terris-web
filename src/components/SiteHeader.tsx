@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { siteData } from "@/lib/site";
 
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -15,6 +17,13 @@ export default function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header
@@ -39,13 +48,16 @@ export default function SiteHeader() {
 
         <nav className="hidden items-center gap-9 md:flex">
           {siteData.menu.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
-              className="text-[14px] font-medium text-neutral-700 transition-base hover:text-black"
+              className={[
+                "text-[14px] font-medium transition-base hover:text-black",
+                isActive(item.href) ? "text-black" : "text-neutral-700",
+              ].join(" ")}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -77,14 +89,17 @@ export default function SiteHeader() {
           <ul className="flex flex-col divide-y divide-[var(--color-line)]">
             {siteData.menu.map((item) => (
               <li key={item.href}>
-                <a
+                <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between py-4 text-[15px] font-medium text-neutral-800"
+                  className={[
+                    "flex items-center justify-between py-4 text-[15px] font-medium",
+                    isActive(item.href) ? "text-black" : "text-neutral-800",
+                  ].join(" ")}
                 >
                   <span>{item.label}</span>
                   <span className="text-neutral-400">→</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

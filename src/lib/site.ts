@@ -27,10 +27,10 @@ export const siteData = {
     years: "20년",
   },
   menu: [
-    { label: "회사소개", href: "#about" },
-    { label: "CEO", href: "#ceo" },
-    { label: "투자 및 전략", href: "#strategy" },
-    { label: "경영정보", href: "#notice" },
+    { label: "회사소개", href: "/" },
+    { label: "CEO", href: "/ceo" },
+    { label: "투자 및 전략", href: "/strategy" },
+    { label: "경영정보", href: "/notice" },
   ],
   contact: {
     address: "03908 서울시 마포구 월드컵북로 361, 12층(상암동)",
