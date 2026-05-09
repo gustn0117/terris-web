@@ -5,7 +5,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ScrollProgress from "@/components/effects/ScrollProgress";
-import CursorFollower from "@/components/effects/CursorFollower";
 import GrainOverlay from "@/components/effects/GrainOverlay";
 import PageTransition from "@/components/effects/PageTransition";
 
@@ -58,7 +57,6 @@ export default function RootLayout({
         <SmoothScroll>
           <ScrollProgress />
           <GrainOverlay />
-          <CursorFollower />
           <SiteHeader />
           <main className="relative">
             <PageTransition>{children}</PageTransition>

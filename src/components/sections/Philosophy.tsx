@@ -3,32 +3,83 @@
 import {
   MotionValue,
   motion,
+  useMotionTemplate,
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { philosophySkyline } from "@/lib/site";
 
 const sentence =
   "부동산 시장은 끊임없이 변화합니다. 테리스 자산운용은 그 변화 속에서 가능성을 읽고, 자산의 가치를 새롭게 재정의합니다.";
 
-function Word({
-  children,
+function Char({
+  char,
   progress,
-  range,
+  start,
+  end,
+  accentEnd,
 }: {
-  children: string;
+  char: string;
   progress: MotionValue<number>;
-  range: [number, number];
+  start: number;
+  end: number;
+  accentEnd: number;
 }) {
-  const opacity = useTransform(progress, range, [0.18, 1]);
+  const opacity = useTransform(progress, [start, end], [0.06, 1]);
+  const y = useTransform(progress, [start, end], ["55%", "0%"]);
+  const blurPx = useTransform(progress, [start, end], [10, 0]);
+  const filter = useMotionTemplate`blur(${blurPx}px)`;
+  const scale = useTransform(progress, [start, end], [0.94, 1]);
+  // Color tween passes through warm accent before settling to white
+  const color = useTransform(
+    progress,
+    [start, (start + end) / 2, accentEnd],
+    ["rgba(255,255,255,0.04)", "#d8b97a", "#ffffff"]
+  );
+
   return (
     <motion.span
-      style={{ opacity }}
-      className="inline-block whitespace-pre text-white"
+      style={{ opacity, y, filter, scale, color }}
+      className="inline-block will-change-transform"
     >
-      {children + " "}
+      {char}
     </motion.span>
+  );
+}
+
+function Word({
+  word,
+  progress,
+  start,
+  end,
+  accentEnd,
+}: {
+  word: string;
+  progress: MotionValue<number>;
+  start: number;
+  end: number;
+  accentEnd: number;
+}) {
+  const chars = Array.from(word);
+  const slot = (end - start) / Math.max(chars.length, 1);
+  return (
+    <span className="inline-block whitespace-nowrap">
+      {chars.map((c, i) => {
+        const cs = start + slot * i;
+        const ce = cs + slot * 1.6;
+        return (
+          <Char
+            key={i}
+            char={c}
+            progress={progress}
+            start={cs}
+            end={Math.min(ce, end)}
+            accentEnd={accentEnd}
+          />
+        );
+      })}
+    </span>
   );
 }
 
@@ -36,35 +87,125 @@ export default function Philosophy() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.85", "end 0.4"],
+    offset: ["start 0.9", "end 0.35"],
   });
 
-  const words = sentence.split(" ");
+  const tokens = sentence.split(" ");
+  const total = tokens.length;
+  const slot = 0.78 / Math.max(total, 1);
+
+  // Page-side flourishes driven by the same scroll progress
+  const lineHeight = useTransform(scrollYProgress, [0, 0.95], ["0%", "100%"]);
+  const bgOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.4, 1],
+    [0, 0.7, 1]
+  );
+  const bgX = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const captionOpacity = useTransform(
+    scrollYProgress,
+    [0.85, 1],
+    [0, 1]
+  );
+  const ruleScaleX = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
+
+  const [counter, setCounter] = useState("00");
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => {
+      setCounter(`${Math.round(v * 100)}`.padStart(2, "0"));
+    });
+  }, [scrollYProgress]);
 
   return (
     <section
       ref={ref}
       id="philosophy"
       aria-label="Philosophy"
-      className="relative bg-[var(--color-bg-dark)] py-[var(--section-py)] text-white"
+      className="relative overflow-hidden bg-[var(--color-bg-dark)] py-[var(--section-py)] text-white"
     >
-      <div className="container-x">
-        <div className="mb-10 flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.28em] text-white/45 md:mb-14">
-          <span className="inline-block h-px w-8 bg-white/30" />
-          <span>Our Philosophy</span>
+      {/* Scroll-driven warm radial spotlight that drifts with progress */}
+      <motion.div
+        aria-hidden
+        style={{ opacity: bgOpacity, x: bgX }}
+        className="pointer-events-none absolute inset-0 -z-0"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 65% 40% at 50% 38%, rgba(200,169,106,0.10), transparent 70%)",
+          }}
+        />
+      </motion.div>
+
+      {/* Faint horizontal rule that fills with scroll, sits behind the text */}
+      <div className="container-x relative">
+        <div className="mb-10 flex items-end justify-between gap-4 md:mb-14">
+          <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.28em] text-white/45">
+            <span className="inline-block h-px w-8 bg-white/30" />
+            <span>Our Philosophy</span>
+          </div>
+          <div
+            className="hidden items-center gap-3 text-[11px] uppercase tracking-[0.28em] text-white/40 md:flex"
+            aria-hidden
+          >
+            <span className="font-serif-en text-[18px] tracking-tight text-white/85 tabular-nums">
+              {counter}
+            </span>
+            <span className="inline-block h-px w-8 bg-white/30" />
+            <span>100</span>
+          </div>
         </div>
 
-        <p className="font-serif-kr text-[clamp(22px,3.6vw,46px)] font-medium leading-[1.45] md:leading-[1.4]">
-          {words.map((w, i) => {
-            const start = i / words.length;
-            const end = start + 1 / words.length;
-            return (
-              <Word key={i} progress={scrollYProgress} range={[start, end]}>
-                {w}
-              </Word>
-            );
-          })}
-        </p>
+        <div className="relative">
+          {/* Vertical accent line — grows with scroll */}
+          <div className="pointer-events-none absolute -left-4 top-0 hidden h-full w-px overflow-hidden bg-white/[0.08] md:block">
+            <motion.div
+              style={{ height: lineHeight }}
+              className="w-full origin-top bg-gradient-to-b from-[var(--color-accent)] via-white/90 to-white/30"
+            />
+          </div>
+
+          <p
+            aria-label={sentence}
+            className="font-serif-kr text-[clamp(22px,3.6vw,46px)] font-medium leading-[1.45] md:leading-[1.4]"
+          >
+            {tokens.map((w, i) => {
+              const start = i * slot;
+              const end = start + slot * 1.6;
+              const accentEnd = Math.min(end + 0.05, 1);
+              return (
+                <span key={i} className="inline">
+                  <Word
+                    word={w}
+                    progress={scrollYProgress}
+                    start={start}
+                    end={end}
+                    accentEnd={accentEnd}
+                  />
+                  {i < tokens.length - 1 && (
+                    <span className="inline">&nbsp;</span>
+                  )}
+                </span>
+              );
+            })}
+          </p>
+
+          {/* Reveal rule that fills horizontally beneath sentence */}
+          <motion.div
+            aria-hidden
+            style={{ scaleX: ruleScaleX }}
+            className="mt-10 h-px w-full origin-left bg-gradient-to-r from-[var(--color-accent)] via-white/40 to-transparent md:mt-14"
+          />
+
+          {/* Closing caption fades in once the sentence is settled */}
+          <motion.p
+            style={{ opacity: captionOpacity }}
+            className="mt-6 font-serif-en text-[12px] uppercase tracking-[0.32em] text-white/55"
+          >
+            — Reading Hidden Value
+          </motion.p>
+        </div>
 
         <div className="mt-16 grid grid-cols-1 gap-10 md:mt-24 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-4">
