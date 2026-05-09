@@ -82,7 +82,7 @@ export default function Hero() {
                 "linear-gradient(115deg, #050505 0%, #1c2e4a 22%, #c8a96a 50%, #1c2e4a 78%, #050505 100%)",
               backgroundSize: "220% 100%",
               backgroundPosition: "0% 50%",
-              fontSize: "clamp(88px, 21vw, 340px)",
+              fontSize: "clamp(80px, 21vw, 290px)",
               letterSpacing: "-0.055em",
             }}
           >
@@ -113,7 +113,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif-kr max-w-[26ch] text-[20px] font-medium leading-[1.5] text-neutral-900 md:text-[28px]"
+            className="font-serif-kr max-w-[28ch] break-keep text-[20px] font-medium leading-[1.5] text-neutral-900 md:text-[28px]"
           >
             {siteData.tagline}
           </motion.p>
