@@ -3,7 +3,6 @@
 import {
   MotionValue,
   motion,
-  useMotionTemplate,
   useScroll,
   useTransform,
 } from "framer-motion";
@@ -26,23 +25,25 @@ function Char({
   end: number;
   accentEnd: number;
 }) {
-  const opacity = useTransform(progress, [start, end], [0.06, 1]);
-  const y = useTransform(progress, [start, end], ["55%", "0%"]);
-  const blurPx = useTransform(progress, [start, end], [10, 0]);
-  const filter = useMotionTemplate`blur(${blurPx}px)`;
-  const scale = useTransform(progress, [start, end], [0.94, 1]);
-  // Color tween passes through warm accent before settling to white
+  // Text is always legible (dim white). Scroll passes a warm-accent
+  // highlight through each character, settling to pure white.
   const color = useTransform(
     progress,
     [start, (start + end) / 2, accentEnd],
-    ["rgba(255,255,255,0.04)", "#d8b97a", "#ffffff"]
+    ["rgba(255,255,255,0.42)", "#d8b97a", "#ffffff"]
+  );
+  const textShadow = useTransform(
+    progress,
+    [start, (start + end) / 2, accentEnd],
+    [
+      "0 0 0 rgba(216,185,122,0)",
+      "0 0 14px rgba(216,185,122,0.55)",
+      "0 0 0 rgba(216,185,122,0)",
+    ]
   );
 
   return (
-    <motion.span
-      style={{ opacity, y, filter, scale, color }}
-      className="inline-block will-change-transform"
-    >
+    <motion.span style={{ color, textShadow }} className="inline-block">
       {char}
     </motion.span>
   );
