@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { heroBg, siteData } from "@/lib/site";
+import { siteData } from "@/lib/site";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,15 +24,38 @@ export default function Hero() {
       ref={ref}
       id="home"
       aria-label="Hero"
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[var(--color-bg-soft)]"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-[#f6f5f1]"
     >
-      {/* subtle top gradient that fades the page surface */}
+      {/* layered backdrop: soft cream base + warm radial + faint vignette */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-white via-[#f6f5f1] to-[#f6f5f1]"
-      />
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f4] via-[#f3f0e9] to-[#ebe7dd]" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 25% 30%, rgba(200,169,106,0.16), transparent 60%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 45% at 80% 70%, rgba(28,46,74,0.10), transparent 65%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>\")",
+          }}
+        />
+      </motion.div>
 
       <div className="container-x flex min-h-[100svh] flex-col justify-end pb-[clamp(80px,12vh,160px)] pt-[180px] md:pt-[200px]">
         {/* Eyebrow */}
@@ -46,20 +69,21 @@ export default function Hero() {
           <span>Terris partners · Asset Management</span>
         </motion.div>
 
-        {/* Giant TERRIS — image filled */}
+        {/* Giant TERRIS — heavy serif filled with dark metallic gradient */}
         <motion.h1
           aria-label="TERRIS"
           style={{ y: titleY, scale: titleScale }}
-          className="text-fill-image select-none font-serif-en font-medium leading-[0.86]"
+          className="select-none font-display-en font-black leading-[0.85]"
         >
           <span
-            className="block text-fill-image"
+            className="text-fill-image hero-shimmer block"
             style={{
-              backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 35%), url(${heroBg})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center 35%",
-              fontSize: "clamp(96px, 22vw, 360px)",
-              letterSpacing: "-0.04em",
+              backgroundImage:
+                "linear-gradient(115deg, #050505 0%, #1c2e4a 22%, #c8a96a 50%, #1c2e4a 78%, #050505 100%)",
+              backgroundSize: "220% 100%",
+              backgroundPosition: "0% 50%",
+              fontSize: "clamp(108px, 24vw, 400px)",
+              letterSpacing: "-0.05em",
             }}
           >
             {letters.map((ch, i) => (

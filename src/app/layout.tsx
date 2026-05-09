@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Noto_Sans_KR, Noto_Serif_KR, Cormorant_Garamond } from "next/font/google";
+import {
+  Noto_Sans_KR,
+  Noto_Serif_KR,
+  Cormorant_Garamond,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import SiteHeader from "@/components/SiteHeader";
@@ -30,6 +35,14 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "TERRIS · 테리스자산운용",
   description:
@@ -51,7 +64,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${notoSans.variable} ${notoSerif.variable} ${cormorant.variable} antialiased`}
+      className={`${notoSans.variable} ${notoSerif.variable} ${cormorant.variable} ${playfair.variable} antialiased`}
     >
       <body className="bg-[var(--color-bg)] text-[var(--color-fg)] font-sans">
         <SmoothScroll>

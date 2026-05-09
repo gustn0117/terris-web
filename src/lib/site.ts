@@ -149,7 +149,7 @@ export const siteData = {
 };
 
 export const heroBg =
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=80";
+  "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=2400&q=85";
 export const aboutCity =
   "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&w=1800&q=80";
 export const aboutLandscape =

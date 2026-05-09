@@ -35,6 +35,7 @@
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif-kr: var(--font-serif-kr), "Noto Serif KR", "Nanum Myeongjo", serif;
   --font-serif: var(--font-serif-en), "Cormorant Garamond", "Times New Roman", serif;
+  --font-display-en: var(--font-display), "Playfair Display", "Bodoni 72", "Times New Roman", serif;
 }
 
 html,
@@ -75,6 +76,10 @@ body {
 .font-serif-kr {
   font-family: var(--font-serif-kr);
   letter-spacing: -0.02em;
+}
+.font-display-en {
+  font-family: var(--font-display-en);
+  letter-spacing: -0.045em;
 }
 
 .container-x {
@@ -199,13 +204,16 @@ html.lenis body {
   }
 }
 
-/* Subtle accent shimmer for hero text on idle */
-@keyframes shimmer-bg {
+/* Hero metallic shimmer — slow drift across the gradient */
+.hero-shimmer {
+  animation: hero-shimmer 11s ease-in-out infinite;
+}
+@keyframes hero-shimmer {
   0%,
   100% {
-    background-position: 0% 35%;
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 100% 35%;
+    background-position: 100% 50%;
   }
 }
