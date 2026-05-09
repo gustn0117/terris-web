@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { siteData } from "@/lib/site";
+import Magnetic from "@/components/effects/Magnetic";
 
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,19 +47,35 @@ export default function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-9 md:flex">
-          {siteData.menu.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={[
-                "text-[14px] font-medium transition-base hover:text-black",
-                isActive(item.href) ? "text-black" : "text-neutral-700",
-              ].join(" ")}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-3 md:flex">
+          {siteData.menu.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Magnetic key={item.href} strength={0.4} className="px-3 py-1">
+                <Link
+                  href={item.href}
+                  data-cursor="hover"
+                  className={[
+                    "relative inline-flex items-center text-[14px] font-medium transition-base",
+                    active
+                      ? "text-black"
+                      : "text-neutral-700 hover:text-black",
+                  ].join(" ")}
+                >
+                  <span
+                    aria-hidden
+                    className={[
+                      "mr-2 inline-block h-1 w-1 rounded-full bg-[var(--color-accent)] transition-base",
+                      active
+                        ? "scale-100 opacity-100"
+                        : "scale-0 opacity-0",
+                    ].join(" ")}
+                  />
+                  <span className="link-underline">{item.label}</span>
+                </Link>
+              </Magnetic>
+            );
+          })}
         </nav>
 
         <button

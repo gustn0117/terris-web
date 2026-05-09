@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { siteData } from "@/lib/site";
+import SplitTextReveal from "@/components/effects/SplitTextReveal";
+import Marquee from "@/components/effects/Marquee";
 
 export default function Notice() {
   return (
@@ -17,9 +19,14 @@ export default function Notice() {
               <span className="inline-block h-px w-8 bg-neutral-400" />
               <span>Management Information</span>
             </div>
-            <h2 className="mt-6 font-serif-kr text-[clamp(32px,4vw,52px)] font-medium leading-[1.1] text-neutral-900">
+            <SplitTextReveal
+              as="h2"
+              unit="char"
+              stagger={0.06}
+              className="mt-6 font-serif-kr text-[clamp(32px,4vw,52px)] font-medium leading-[1.1] text-neutral-900"
+            >
               경영정보
-            </h2>
+            </SplitTextReveal>
           </div>
 
           <div className="flex items-center gap-3">
@@ -76,7 +83,7 @@ export default function Notice() {
           ))}
         </ul>
 
-        {/* Closing wordmark */}
+        {/* Closing wordmark + marquee */}
         <div className="mt-24 md:mt-32">
           <p className="font-serif-en text-[clamp(64px,12vw,180px)] font-light leading-[0.92] tracking-tight text-neutral-900">
             Build wealth
@@ -84,6 +91,22 @@ export default function Notice() {
             with TERRIS.
           </p>
         </div>
+      </div>
+
+      <div className="mt-20 border-y border-[var(--color-line)] py-7 text-neutral-900 md:mt-28">
+        <Marquee
+          duration={48}
+          items={[
+            "Asset Management",
+            "Real Estate",
+            "Value-Add Investment",
+            "Trust · 신뢰",
+            "Discipline · 절제",
+            "Insight · 통찰",
+            "TERRIS · 테리스",
+          ]}
+          className="font-serif-en text-[clamp(40px,7vw,96px)] font-light leading-none tracking-tight"
+        />
       </div>
     </section>
   );

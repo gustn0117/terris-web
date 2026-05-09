@@ -4,6 +4,10 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import ScrollProgress from "@/components/effects/ScrollProgress";
+import CursorFollower from "@/components/effects/CursorFollower";
+import GrainOverlay from "@/components/effects/GrainOverlay";
+import PageTransition from "@/components/effects/PageTransition";
 
 const notoSans = Noto_Sans_KR({
   variable: "--font-sans-kr",
@@ -52,8 +56,13 @@ export default function RootLayout({
     >
       <body className="bg-[var(--color-bg)] text-[var(--color-fg)] font-sans">
         <SmoothScroll>
+          <ScrollProgress />
+          <GrainOverlay />
+          <CursorFollower />
           <SiteHeader />
-          <main className="relative">{children}</main>
+          <main className="relative">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <SiteFooter />
         </SmoothScroll>
       </body>

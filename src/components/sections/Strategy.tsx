@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { strategyImage, siteData } from "@/lib/site";
+import SplitTextReveal from "@/components/effects/SplitTextReveal";
+import SpotlightCard from "@/components/effects/SpotlightCard";
 
 export default function Strategy() {
   return (
@@ -17,11 +19,14 @@ export default function Strategy() {
               <span className="inline-block h-px w-8 bg-neutral-400" />
               <span>Investment Strategy</span>
             </div>
-            <h2 className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28] text-neutral-900">
-              전략은 넓게, 실행은 깊게.
-              <br />
-              성과는 반드시 만들어냅니다.
-            </h2>
+            <SplitTextReveal
+              as="h2"
+              unit="word"
+              stagger={0.05}
+              className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28] text-neutral-900"
+            >
+              전략은 넓게, 실행은 깊게. 성과는 반드시 만들어냅니다.
+            </SplitTextReveal>
           </div>
           <div className="md:col-span-5 md:pt-2">
             <p className="max-w-[44ch] text-[14px] leading-[1.85] text-neutral-700">
@@ -132,22 +137,30 @@ export default function Strategy() {
                   delay: i * 0.06,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="group relative flex flex-col gap-3 border border-[var(--color-line)] bg-white p-6 transition-base hover:border-neutral-900"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-serif-en text-[12px] tracking-[0.18em] text-[var(--color-accent-deep)]">
-                    {s.step}
-                  </span>
-                  <span className="font-serif-en text-[28px] font-light text-neutral-300">
-                    0{i + 1}
-                  </span>
-                </div>
-                <h4 className="font-serif-en text-[20px] font-medium leading-[1.2] text-neutral-900">
-                  {s.title}
-                </h4>
-                <p className="text-[13px] leading-[1.75] text-neutral-600">
-                  {s.desc}
-                </p>
+                <SpotlightCard
+                  glow="rgba(28,46,74,0.08)"
+                  className="flex h-full flex-col gap-3 border border-[var(--color-line)] bg-white p-6 transition-base hover:-translate-y-1 hover:border-neutral-900 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)]"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif-en text-[12px] tracking-[0.18em] text-[var(--color-accent-deep)]">
+                      {s.step}
+                    </span>
+                    <span className="font-serif-en text-[28px] font-light text-neutral-300 transition-base group-hover:text-neutral-500">
+                      0{i + 1}
+                    </span>
+                  </div>
+                  <h4 className="font-serif-en text-[20px] font-medium leading-[1.2] text-neutral-900">
+                    {s.title}
+                  </h4>
+                  <p className="text-[13px] leading-[1.75] text-neutral-600">
+                    {s.desc}
+                  </p>
+                  <div
+                    aria-hidden
+                    className="mt-auto h-px w-0 bg-[var(--color-accent-deep)] transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:w-full"
+                  />
+                </SpotlightCard>
               </motion.li>
             ))}
           </ol>

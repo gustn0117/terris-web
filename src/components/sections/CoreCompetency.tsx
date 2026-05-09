@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { competencyImages, siteData } from "@/lib/site";
+import SplitTextReveal from "@/components/effects/SplitTextReveal";
 
 export default function CoreCompetency() {
   return (
@@ -16,11 +17,14 @@ export default function CoreCompetency() {
               <span className="inline-block h-px w-8 bg-white/30" />
               <span>Core Competency</span>
             </div>
-            <h2 className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28]">
-              구조적인 분석 기반으로
-              <br />
-              자산의 미래 가치를 설계합니다.
-            </h2>
+            <SplitTextReveal
+              as="h2"
+              unit="word"
+              stagger={0.05}
+              className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28]"
+            >
+              구조적인 분석 기반으로 자산의 미래 가치를 설계합니다.
+            </SplitTextReveal>
             <p className="mt-6 max-w-[42ch] text-[14px] leading-[1.85] text-white/60">
               자산운용사·사모펀드·자문회사 등에서 실무 경험을 축적한 전문
               인력들로 구성된 회사. 부동산 시장의 위기 대응과 정확한 판단을
@@ -43,12 +47,16 @@ export default function CoreCompetency() {
               }}
               className="group flex flex-col gap-5"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-800">
+              <div className="relative aspect-[4/3] overflow-hidden bg-neutral-800" data-cursor="view" data-cursor-label={c.eyebrow}>
                 <div
-                  className="absolute inset-0 bg-cover bg-center grayscale transition-base group-hover:grayscale-0"
+                  className="absolute inset-0 bg-cover bg-center grayscale transition-[transform,filter] duration-[1400ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06] group-hover:grayscale-0"
                   style={{ backgroundImage: `url(${competencyImages[i]})` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div
+                  aria-hidden
+                  className="absolute inset-x-0 bottom-0 h-px w-0 bg-[var(--color-accent)] transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] group-hover:w-full"
+                />
                 <span className="absolute right-4 top-4 font-serif-en text-[14px] italic text-white/80">
                   {c.eyebrow}
                 </span>

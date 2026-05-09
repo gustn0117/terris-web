@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { aboutCity, aboutGlass, aboutLandscape } from "@/lib/site";
+import SplitTextReveal from "@/components/effects/SplitTextReveal";
 
 const cards = [
   {
@@ -23,6 +25,13 @@ const cards = [
 ];
 
 export default function About() {
+  const wideRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: wideRef,
+    offset: ["start end", "end start"],
+  });
+  const wideY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+
   return (
     <section
       id="about"
@@ -36,11 +45,14 @@ export default function About() {
               <span className="inline-block h-px w-8 bg-neutral-400" />
               <span>About TERRIS</span>
             </div>
-            <h2 className="mt-6 font-serif-kr text-[clamp(28px,3.6vw,44px)] font-medium leading-[1.25] text-neutral-900">
-              보는 것이 다르니까,
-              <br />
-              만드는 가치도 다릅니다.
-            </h2>
+            <SplitTextReveal
+              as="h2"
+              unit="word"
+              stagger={0.05}
+              className="mt-6 font-serif-kr text-[clamp(28px,3.6vw,44px)] font-medium leading-[1.25] text-neutral-900"
+            >
+              보는 것이 다르니까, 만드는 가치도 다릅니다.
+            </SplitTextReveal>
           </div>
           <div className="md:col-span-5">
             <p className="max-w-[42ch] text-[14px] leading-[1.85] text-neutral-600">
@@ -96,18 +108,26 @@ export default function About() {
           ))}
         </div>
 
-        {/* Bottom feature row — wide image */}
+        {/* Bottom feature row — wide image with parallax */}
         <motion.div
+          ref={wideRef}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative mt-20 aspect-[16/7] overflow-hidden md:mt-28"
+          data-cursor="view"
+          data-cursor-label="TERRIS"
         >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${aboutLandscape})` }}
-          />
+          <motion.div
+            style={{ y: wideY }}
+            className="absolute -inset-y-[12%] inset-x-0 bg-cover bg-center"
+          >
+            <div
+              className="h-full w-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${aboutLandscape})` }}
+            />
+          </motion.div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
           <div className="container-x relative flex h-full flex-col justify-end pb-10 md:pb-16">
             <p className="font-serif-en text-[clamp(48px,9vw,140px)] font-light leading-[0.95] text-white">

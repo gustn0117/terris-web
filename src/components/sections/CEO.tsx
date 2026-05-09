@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ceoPortrait, projectImages, siteData } from "@/lib/site";
+import AnimatedNumber from "@/components/effects/AnimatedNumber";
+import SpotlightCard from "@/components/effects/SpotlightCard";
+import SplitTextReveal from "@/components/effects/SplitTextReveal";
 
 export default function CEO() {
   const { ceo, stats, projects } = siteData;
@@ -18,9 +21,14 @@ export default function CEO() {
               <span className="inline-block h-px w-8 bg-white/30" />
               <span>CEO Message</span>
             </div>
-            <p className="mt-8 font-serif-kr text-[clamp(22px,2.8vw,36px)] font-medium leading-[1.45] md:max-w-[28ch] md:text-right md:ml-auto">
+            <SplitTextReveal
+              as="p"
+              unit="word"
+              stagger={0.05}
+              className="mt-8 font-serif-kr text-[clamp(22px,2.8vw,36px)] font-medium leading-[1.45] md:max-w-[28ch] md:text-right md:ml-auto"
+            >
               {ceo.quote}
-            </p>
+            </SplitTextReveal>
           </div>
         </div>
 
@@ -32,8 +40,10 @@ export default function CEO() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="md:col-span-5"
           >
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <div
+            <div className="group relative aspect-[4/5] overflow-hidden" data-cursor="view" data-cursor-label="CEO">
+              <motion.div
+                whileHover={{ scale: 1.06 }}
+                transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${ceoPortrait})`,
@@ -41,6 +51,10 @@ export default function CEO() {
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+              <div className="absolute inset-x-6 bottom-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-white/80">
+                <span className="inline-block h-px w-6 bg-white/60" />
+                Changki Jang
+              </div>
             </div>
           </motion.div>
 
@@ -94,26 +108,47 @@ export default function CEO() {
 
         {/* Stats */}
         <div className="mt-20 grid grid-cols-1 gap-8 border-t border-white/10 pt-12 md:mt-28 md:grid-cols-3">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-15%" }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
             <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
               {stats.aumLabel}
             </p>
             <p className="mt-2 font-serif-en text-[48px] font-light text-white md:text-[68px]">
-              {stats.aum}
+              <AnimatedNumber value={1.3} decimals={1} />
+              <span className="ml-1 text-[28px] tracking-normal text-white/85 md:text-[36px]">
+                조
+              </span>
               <span className="ml-1 text-[18px] tracking-normal text-white/55 md:text-[22px]">
                 원
               </span>
             </p>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-15%" }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
             <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
               {stats.yearsLabel}
             </p>
             <p className="mt-2 font-serif-en text-[48px] font-light text-white md:text-[68px]">
-              {stats.years}
+              <AnimatedNumber value={20} />
+              <span className="ml-1 text-[28px] tracking-normal text-white/85 md:text-[36px]">
+                년
+              </span>
             </p>
-          </div>
-          <div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-15%" }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
             <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
               주요 사업분야
             </p>
@@ -121,7 +156,7 @@ export default function CEO() {
               국내외 REF, PFV 투자 운용 — REITs, Infrastructure, Securities를
               아우르는 부동산 자산 운용.
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Projects */}
@@ -150,22 +185,33 @@ export default function CEO() {
                   delay: i * 0.08,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="group relative aspect-[3/4] w-[260px] flex-none overflow-hidden md:w-[300px]"
+                className="aspect-[3/4] w-[260px] flex-none md:w-[300px]"
               >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-base group-hover:scale-[1.04]"
-                  style={{ backgroundImage: `url(${projectImages[i]})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-                <div className="absolute inset-x-5 bottom-5 text-white">
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-white/70">
-                    {p.date}
-                  </p>
-                  <p className="mt-2 font-serif-kr text-[18px] font-medium leading-[1.35]">
-                    {p.title}
-                  </p>
-                  <p className="mt-1 text-[12px] text-white/70">{p.scale}</p>
-                </div>
+                <SpotlightCard
+                  glow="rgba(200,169,106,0.18)"
+                  className="relative h-full overflow-hidden"
+                >
+                  <div
+                    data-cursor="view"
+                    data-cursor-label="View"
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[1400ms] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]"
+                    style={{ backgroundImage: `url(${projectImages[i]})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 ring-1 ring-inset ring-white/0 transition-base group-hover:ring-white/30"
+                  />
+                  <div className="absolute inset-x-5 bottom-5 text-white">
+                    <p className="text-[11px] uppercase tracking-[0.22em] text-white/70">
+                      {p.date}
+                    </p>
+                    <p className="mt-2 font-serif-kr text-[18px] font-medium leading-[1.35]">
+                      {p.title}
+                    </p>
+                    <p className="mt-1 text-[12px] text-white/70">{p.scale}</p>
+                  </div>
+                </SpotlightCard>
               </motion.div>
             ))}
           </div>

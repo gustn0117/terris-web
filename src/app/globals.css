@@ -127,3 +127,97 @@ html.lenis body {
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   transition-duration: 400ms;
 }
+
+/* Custom cursor — hide native pointer when active */
+@media (pointer: fine) {
+  html.custom-cursor,
+  html.custom-cursor body,
+  html.custom-cursor a,
+  html.custom-cursor button,
+  html.custom-cursor [role="button"],
+  html.custom-cursor [data-cursor] {
+    cursor: none;
+  }
+}
+
+/* Animated underline for links */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover,
+.group:hover .link-underline {
+  background-size: 100% 1px;
+}
+
+/* Reveal mask wrapper */
+.reveal-mask {
+  clip-path: inset(0 100% 0 0);
+  animation: reveal-mask 1.4s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+@keyframes reveal-mask {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Marquee */
+.marquee-track {
+  animation-name: marquee-x;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  width: max-content;
+}
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Custom scrollbar (subtle) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.32);
+  background-clip: padding-box;
+  border: 3px solid transparent;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Subtle accent shimmer for hero text on idle */
+@keyframes shimmer-bg {
+  0%,
+  100% {
+    background-position: 0% 35%;
+  }
+  50% {
+    background-position: 100% 35%;
+  }
+}
