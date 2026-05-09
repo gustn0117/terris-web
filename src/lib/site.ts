@@ -148,31 +148,19 @@ export const siteData = {
   ],
 };
 
-export const heroBg =
-  "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=2400&q=85";
-export const aboutCity =
-  "https://images.unsplash.com/photo-1542361345-89e58247f2d5?auto=format&fit=crop&w=1800&q=80";
-export const aboutLandscape =
-  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=80";
-export const aboutGlass =
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80";
-export const philosophySkyline =
-  "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=2000&q=80";
-export const competencyImages = [
-  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80",
-];
-export const ceoPortrait =
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1200&q=80";
-export const ceoMeeting =
-  "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=2000&q=80";
-export const strategyImage =
-  "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=2000&q=80";
-export const projectImages = [
-  "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1577985043696-8bd54d9f093f?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1200&q=80",
-];
+// Reference placeholder: diagonal-hatch SVG used in place of every photo
+// while the client supplies finals. Single tile pattern that scales with
+// background-size: cover and stays visually consistent at any aspect ratio.
+export const placeholder =
+  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' preserveAspectRatio='none'><defs><pattern id='h' patternUnits='userSpaceOnUse' width='22' height='22' patternTransform='rotate(45)'><rect width='22' height='22' fill='%23ece9e0'/><line x1='11' y1='0' x2='11' y2='22' stroke='%23b3afa3' stroke-width='2'/></pattern></defs><rect width='800' height='600' fill='url(%23h)'/><rect x='4' y='4' width='792' height='592' fill='none' stroke='%2398948a' stroke-width='3'/><line x1='4' y1='4' x2='796' y2='596' stroke='%2398948a' stroke-width='2'/><line x1='796' y1='4' x2='4' y2='596' stroke='%2398948a' stroke-width='2'/></svg>";
+
+export const heroBg = placeholder;
+export const aboutCity = placeholder;
+export const aboutLandscape = placeholder;
+export const aboutGlass = placeholder;
+export const philosophySkyline = placeholder;
+export const competencyImages = [placeholder, placeholder, placeholder, placeholder];
+export const ceoPortrait = placeholder;
+export const ceoMeeting = placeholder;
+export const strategyImage = placeholder;
+export const projectImages = [placeholder, placeholder, placeholder, placeholder];
