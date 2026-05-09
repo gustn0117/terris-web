@@ -51,7 +51,7 @@ export default function About() {
               stagger={0.05}
               className="mt-6 font-serif-kr text-[clamp(28px,3.6vw,44px)] font-medium leading-[1.25] text-neutral-900"
             >
-              보는 것이 다르니까, 만드는 가치도 다릅니다.
+              {"보는 것이 다르니까,\n만드는 가치도 다릅니다."}
             </SplitTextReveal>
           </div>
           <div className="md:col-span-5">

@@ -76,14 +76,14 @@ export default function Hero() {
           className="select-none font-display-en font-black leading-[0.85]"
         >
           <span
-            className="text-fill-image hero-shimmer block"
+            className="text-fill-image hero-shimmer block whitespace-nowrap"
             style={{
               backgroundImage:
                 "linear-gradient(115deg, #050505 0%, #1c2e4a 22%, #c8a96a 50%, #1c2e4a 78%, #050505 100%)",
               backgroundSize: "220% 100%",
               backgroundPosition: "0% 50%",
-              fontSize: "clamp(108px, 24vw, 400px)",
-              letterSpacing: "-0.05em",
+              fontSize: "clamp(88px, 21vw, 340px)",
+              letterSpacing: "-0.055em",
             }}
           >
             {letters.map((ch, i) => (

@@ -23,7 +23,7 @@ export default function CoreCompetency() {
               stagger={0.05}
               className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28]"
             >
-              구조적인 분석 기반으로 자산의 미래 가치를 설계합니다.
+              {"구조적인 분석 기반으로\n자산의 미래 가치를 설계합니다."}
             </SplitTextReveal>
             <p className="mt-6 max-w-[42ch] text-[14px] leading-[1.85] text-white/60">
               자산운용사·사모펀드·자문회사 등에서 실무 경험을 축적한 전문

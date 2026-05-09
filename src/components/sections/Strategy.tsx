@@ -25,7 +25,7 @@ export default function Strategy() {
               stagger={0.05}
               className="mt-6 font-serif-kr text-[clamp(28px,3.4vw,42px)] font-medium leading-[1.28] text-neutral-900"
             >
-              전략은 넓게, 실행은 깊게. 성과는 반드시 만들어냅니다.
+              {"전략은 넓게, 실행은 깊게.\n성과는 반드시 만들어냅니다."}
             </SplitTextReveal>
           </div>
           <div className="md:col-span-5 md:pt-2">
