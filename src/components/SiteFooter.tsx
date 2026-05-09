@@ -1,4 +1,5 @@
-import { siteData, placeholder } from "@/lib/site";
+import Image from "next/image";
+import { siteData } from "@/lib/site";
 
 export default function SiteFooter() {
   const year = new Date().getFullYear();
@@ -7,12 +8,13 @@ export default function SiteFooter() {
       <div className="container-x py-16 md:py-24">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-5">
-            <span
-              aria-hidden
-              className="block h-9 w-[117px] border border-white/30"
-              style={{ backgroundImage: `url("${placeholder}")`, backgroundSize: "cover" }}
+            <Image
+              src="/logo/terris-white.png"
+              alt="TERRIS Partners"
+              width={520}
+              height={160}
+              className="h-9 w-auto opacity-95"
             />
-            <span className="sr-only">TERRIS Partners</span>
             <p className="mt-6 max-w-[36ch] text-[13px] leading-[1.7] text-white/60">
               부동산의 본질적 가치를 최우선으로 두고, 수치와 조건을 넘어 환경과
               변화 가능성까지 종합적으로 분석하여 안정적인 수익 구조를 구축합니다.
