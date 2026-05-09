@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { siteData } from "@/lib/site";
+import { siteData, placeholder } from "@/lib/site";
 import Magnetic from "@/components/effects/Magnetic";
 
 export default function SiteHeader() {
@@ -37,14 +36,12 @@ export default function SiteHeader() {
     >
       <div className="container-x flex h-[68px] items-center justify-between md:h-[80px]">
         <Link href="/" aria-label="TERRIS 홈" className="flex items-center gap-2">
-          <Image
-            src="/logo/terris-black.png"
-            alt="TERRIS Partners"
-            width={520}
-            height={160}
-            priority
-            className="h-7 w-auto md:h-8"
+          <span
+            aria-hidden
+            className="block h-7 w-[91px] border border-[#98948a] md:h-8 md:w-[104px]"
+            style={{ backgroundImage: `url("${placeholder}")`, backgroundSize: "cover" }}
           />
+          <span className="sr-only">TERRIS Partners</span>
         </Link>
 
         <nav className="hidden items-center gap-3 md:flex">
