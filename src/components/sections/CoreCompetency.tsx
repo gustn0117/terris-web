@@ -21,7 +21,7 @@ export default function CoreCompetency() {
               as="h2"
               unit="word"
               stagger={0.05}
-              className="mt-6 font-serif-kr kr-keep text-[clamp(26px,3.4vw,42px)] font-medium leading-[1.28]"
+              className="mt-6 font-sans kr-keep text-[clamp(26px,3.6vw,46px)] font-semibold leading-[1.32] tracking-[-0.03em]"
             >
               {"구조적인 분석 기반으로\n자산의 미래 가치를 설계합니다."}
             </SplitTextReveal>
@@ -62,10 +62,10 @@ export default function CoreCompetency() {
                 </span>
               </div>
               <div>
-                <h3 className="font-serif-kr kr-keep text-[17px] font-semibold leading-[1.4] md:text-[19px]">
+                <h3 className="font-sans kr-keep text-[16px] font-medium leading-[1.4] tracking-[-0.02em] md:text-[18px]">
                   {c.title}
                 </h3>
-                <p className="kr-keep mt-3 text-[12.5px] leading-[1.8] text-white/60 md:text-[13px]">
+                <p className="kr-keep mt-3 text-[13px] font-light leading-[1.7] text-white/70 md:text-[13.5px]">
                   {c.body}
                 </p>
               </div>

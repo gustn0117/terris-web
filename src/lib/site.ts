@@ -2,7 +2,7 @@ export const siteData = {
   name: "TERRIS",
   legalName: "TERRIS partners 주식회사",
   newName: "테리스자산운용(주)",
-  tagline: "변화의 가능성을 읽고, 부동산 가치를 극대화합니다.",
+  tagline: "변화의 흐름을 읽고, 부동산 가치를 극대화합니다.",
   ceo: {
     name: "장창기",
     nameEn: "Changki Jang",
@@ -148,19 +148,41 @@ export const siteData = {
   ],
 };
 
-// Reference placeholder: diagonal-hatch SVG used in place of every photo
-// while the client supplies finals. Single tile pattern that scales with
-// background-size: cover and stays visually consistent at any aspect ratio.
+// Diagonal-hatch placeholder kept exported for any future drop-in slots.
 export const placeholder =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600' preserveAspectRatio='none'><defs><pattern id='h' patternUnits='userSpaceOnUse' width='22' height='22' patternTransform='rotate(45)'><rect width='22' height='22' fill='%23ece9e0'/><line x1='11' y1='0' x2='11' y2='22' stroke='%23b3afa3' stroke-width='2'/></pattern></defs><rect width='800' height='600' fill='url(%23h)'/><rect x='4' y='4' width='792' height='592' fill='none' stroke='%2398948a' stroke-width='3'/><line x1='4' y1='4' x2='796' y2='596' stroke='%2398948a' stroke-width='2'/><line x1='796' y1='4' x2='4' y2='596' stroke='%2398948a' stroke-width='2'/></svg>";
 
-export const heroBg = placeholder;
-export const aboutCity = placeholder;
-export const aboutLandscape = placeholder;
-export const aboutGlass = placeholder;
-export const philosophySkyline = placeholder;
-export const competencyImages = [placeholder, placeholder, placeholder, placeholder];
-export const ceoPortrait = placeholder;
-export const ceoMeeting = placeholder;
-export const strategyImage = placeholder;
-export const projectImages = [placeholder, placeholder, placeholder, placeholder];
+// Real assets supplied 2026-05-11. Files live under /public/images/<section>/.
+export const heroVideo = "/images/home/hero.mp4";
+export const aboutWideVideo = "/images/home/about-wide.mp4";
+export const heroBg = "/images/home/terra.png"; // sky/clouds for TERRIS letter fill
+export const aboutCity = "/images/home/lease.png";
+export const aboutLandscape = "/images/home/terra.png";
+export const aboutGlass = "/images/home/lease.png";
+export const philosophySkyline = "/images/about/skyline.png";
+export const competencyImages = [
+  "/images/about/competency-1.png",
+  "/images/about/competency-2.png",
+  "/images/about/competency-3.png",
+  "/images/about/competency-4.png",
+];
+export const ceoPortrait = "/images/ceo/portrait.png";
+export const ceoSignature = "/images/ceo/signature.png";
+export const ceoMeeting = "/images/ceo/portrait.png";
+export const strategyImage = "/images/strategy/a1.png";
+export const strategyHeroAlt = "/images/strategy/a2.png";
+export const strategyDiagramAA = "/images/strategy/process-aa.png";
+export const strategyDiagramBB = "/images/strategy/process-bb.png";
+export const strategyTimeline = [
+  "/images/strategy/t1.png",
+  "/images/strategy/t2.png",
+  "/images/strategy/t3.png",
+];
+export const projectImages = [
+  "/images/ceo/project-1.png",
+  "/images/ceo/project-2.png",
+  "/images/ceo/project-3.png",
+  "/images/ceo/project-4.png",
+];
+export const orgChart = "/images/about/org-chart.png";
+export const aboutWideImage = "/images/about/about-wide.png";

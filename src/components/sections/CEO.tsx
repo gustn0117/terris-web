@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ceoPortrait, projectImages, siteData } from "@/lib/site";
+import { ceoPortrait, ceoSignature, projectImages, siteData } from "@/lib/site";
 import AnimatedNumber from "@/components/effects/AnimatedNumber";
 import SpotlightCard from "@/components/effects/SpotlightCard";
 import SplitTextReveal from "@/components/effects/SplitTextReveal";
@@ -59,11 +60,11 @@ export default function CEO() {
           </motion.div>
 
           <div className="md:col-span-7">
-            <h3 className="font-serif-en text-[clamp(32px,3.6vw,46px)] font-medium tracking-tight">
+            <h3 className="font-sans text-[clamp(28px,3.6vw,42px)] font-semibold leading-[1.2] tracking-[-0.02em]">
               {ceo.name}{" "}
-              <span className="text-white/60">{ceo.nameEn}</span>
+              <span className="font-light text-white/70">{ceo.nameEn}</span>
             </h3>
-            <p className="mt-2 text-[12px] uppercase tracking-[0.22em] text-white/45">
+            <p className="mt-2 text-[14px] font-semibold tracking-[-0.01em] text-[var(--color-sub-light)]">
               {ceo.role}
             </p>
 
@@ -79,25 +80,31 @@ export default function CEO() {
                     delay: i * 0.06,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="kr-keep max-w-[52ch] text-[13.5px] leading-[1.85] text-white/75 md:text-[14px]"
+                  className="kr-keep max-w-[52ch] text-[14px] font-light leading-[1.8] text-white/80 md:text-[15px]"
                 >
                   {line}
                 </motion.p>
               ))}
             </div>
 
-            <div className="mt-10 inline-flex font-serif-en text-[28px] italic text-white/85">
-              {ceo.name}
+            <div className="mt-8 inline-flex">
+              <Image
+                src={ceoSignature}
+                alt={`${ceo.name} 서명`}
+                width={220}
+                height={80}
+                className="h-14 w-auto opacity-90 invert md:h-20"
+              />
             </div>
 
-            <div className="mt-12">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
-                Career
+            <div className="mt-10 md:mt-12">
+              <p className="font-sans text-[15px] font-semibold tracking-[-0.01em] text-white">
+                경력사항
               </p>
-              <ul className="mt-4 space-y-2 text-[14px] text-white/80">
+              <ul className="mt-4 space-y-2 text-[14px] font-light text-white/80 md:text-[15px]">
                 {ceo.careers.map((c, i) => (
                   <li key={i} className="flex gap-4">
-                    <span className="w-8 text-white/45">{c.period}</span>
+                    <span className="w-8 font-medium text-white">{c.period}</span>
                     <span>{c.title}</span>
                   </li>
                 ))}

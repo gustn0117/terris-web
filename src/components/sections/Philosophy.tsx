@@ -206,10 +206,25 @@ export default function Philosophy() {
             className="mt-10 h-px w-full origin-left bg-gradient-to-r from-[var(--color-accent)] via-white/40 to-transparent md:mt-14"
           />
 
+          <div className="mt-8 flex flex-col gap-8 md:mt-12 md:flex-row md:items-end md:justify-between">
+            <a
+              href="/about"
+              className="inline-flex w-fit items-center gap-3 rounded-full border border-white/30 px-5 py-2.5 text-[12px] uppercase tracking-[0.22em] text-white/85 transition-base hover:border-white hover:bg-white hover:text-black"
+            >
+              Learn More
+              <span aria-hidden>→</span>
+            </a>
+            <p className="kr-keep max-w-[44ch] text-[13px] leading-[1.7] text-[var(--color-sub-dim)] md:text-right md:text-[14px]">
+              The real estate market is constantly evolving. Terris Asset
+              Management identifies untapped potential within these changes,
+              and redefines the value of real assets.
+            </p>
+          </div>
+
           {/* Closing caption fades in once the sentence is settled */}
           <motion.p
             style={{ opacity: captionOpacity }}
-            className="mt-6 font-serif-en text-[12px] uppercase tracking-[0.32em] text-white/55"
+            className="mt-8 font-display-en text-[12px] uppercase tracking-[0.32em] text-white/55 md:mt-10"
           >
             — Reading Hidden Value
           </motion.p>

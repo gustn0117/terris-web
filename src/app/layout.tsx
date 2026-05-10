@@ -3,7 +3,8 @@ import {
   Noto_Sans_KR,
   Noto_Serif_KR,
   Cormorant_Garamond,
-  Playfair_Display,
+  Libre_Bodoni,
+  Archivo_Black,
 } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -35,11 +36,18 @@ const cormorant = Cormorant_Garamond({
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const libreBodoni = Libre_Bodoni({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const archivoBlack = Archivo_Black({
+  variable: "--font-mono-display",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -64,7 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${notoSans.variable} ${notoSerif.variable} ${cormorant.variable} ${playfair.variable} antialiased`}
+      className={`${notoSans.variable} ${notoSerif.variable} ${cormorant.variable} ${libreBodoni.variable} ${archivoBlack.variable} antialiased`}
     >
       <body className="bg-[var(--color-bg)] text-[var(--color-fg)] font-sans">
         <SmoothScroll>

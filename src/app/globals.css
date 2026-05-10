@@ -1,17 +1,23 @@
 @import "tailwindcss";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
 :root {
   --color-bg: #ffffff;
   --color-bg-soft: #f6f5f1;
-  --color-bg-dark: #0a0a0a;
-  --color-bg-dark-soft: #131313;
+  --color-bg-dark: #1e1e1e;
+  --color-bg-dark-soft: #2a2a2a;
   --color-fg: #111111;
   --color-fg-muted: #6b6b6b;
   --color-fg-soft: #9a9a9a;
   --color-line: #e5e3dd;
-  --color-line-dark: #232323;
+  --color-line-dark: #2f2f2f;
   --color-accent: #c8a96a;
   --color-accent-deep: #1c2e4a;
+  --color-accent-dot: #1f00ff;
+  --color-sub-light: #b7b7b7;
+  --color-sub-mid: #878787;
+  --color-sub-dim: #c4c4c4;
+  --color-sub-faint: #b5b5b5;
 
   --max-w: 1280px;
   --gutter: clamp(18px, 4vw, 64px);
@@ -32,11 +38,15 @@
   --color-accent: var(--color-accent);
   --color-accent-deep: var(--color-accent-deep);
 
-  --font-sans: var(--font-sans-kr), "Pretendard", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Pretendard Variable", "Pretendard", var(--font-sans-kr),
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   --font-serif-kr: var(--font-serif-kr), "Noto Serif KR", "Nanum Myeongjo", serif;
   --font-serif: var(--font-serif-en), "Cormorant Garamond", "Times New Roman", serif;
-  --font-display-en: var(--font-display), "Playfair Display", "Bodoni 72", "Times New Roman", serif;
+  --font-display-en: var(--font-display), "Libre Bodoni", "Bodoni 72",
+    "Times New Roman", serif;
+  --font-mono-display: var(--font-mono-display), "Archivo Black", "Gotham",
+    "Helvetica Neue", Arial, sans-serif;
 }
 
 html,
@@ -81,6 +91,10 @@ body {
 .font-display-en {
   font-family: var(--font-display-en);
   letter-spacing: -0.045em;
+}
+.font-mono-display {
+  font-family: var(--font-mono-display);
+  letter-spacing: -0.06em;
 }
 
 /* Korean text helpers — keep words intact, balance lines */

@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { aboutCity, aboutGlass, aboutLandscape } from "@/lib/site";
+import { motion } from "framer-motion";
+import { aboutCity, aboutGlass, aboutWideVideo } from "@/lib/site";
 import SplitTextReveal from "@/components/effects/SplitTextReveal";
 
 const cards = [
@@ -10,28 +9,21 @@ const cards = [
     eyebrow: "About TERRIS",
     title: "Terra",
     underline: "Lease",
-    sub: "임대 · 계약",
-    body: "부동산의 본질적 가치를 최우선으로 두고, 수치와 조건을 넘어 환경과 변화 가능성까지 종합적으로 분석하여 안정적인 수익 구조를 구축합니다.",
+    subKr: "(라틴어) 땅, 대지",
+    body: "땅은 단순한 공간이 아니라, 그 자체로 고유한 흐름과 가능성을 품고 있는 자산입니다. 저희는 그 안에 담긴 입지의 맥락과 잠재력, 그리고 시간이 만들어낼 가치를 깊이 있게 바라봅니다.",
     image: aboutCity,
   },
   {
     eyebrow: "About TERRIS",
     title: "Terra",
     underline: "Logic",
-    sub: "구조 · 운영",
+    subKr: "(라틴어) 구조, 논리",
     body: "구조화된 투자 프로세스와 실물 운영 노하우. 자산이 가진 잠재력과 시장의 흐름을 정렬하여 시간을 견디는 자산을 만듭니다.",
     image: aboutGlass,
   },
 ];
 
 export default function About() {
-  const wideRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: wideRef,
-    offset: ["start end", "end start"],
-  });
-  const wideY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-
   return (
     <section
       id="about"
@@ -91,21 +83,21 @@ export default function About() {
 
               <div className="flex flex-col">
                 <div className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-neutral-500">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-deep)]" />
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-[var(--color-accent-dot)]" />
                   {c.eyebrow}
                 </div>
-                <h3 className="mt-5 font-serif-en text-[clamp(44px,7vw,84px)] font-light leading-[1.02] text-neutral-900">
+                <h3 className="mt-5 font-display-en text-[clamp(44px,7vw,84px)] font-normal leading-[1.02] tracking-[-0.03em] text-neutral-900">
                   <span className="block">{c.title}</span>
                   <span className="mt-1 block">{c.underline}</span>
                 </h3>
                 <span
                   aria-hidden
-                  className="mt-5 block h-px w-12 bg-neutral-900/70"
+                  className="mt-5 block h-px w-full bg-neutral-300"
                 />
-                <p className="mt-4 text-[12px] uppercase tracking-[0.2em] text-neutral-500">
-                  {c.sub}
+                <p className="mt-4 text-[12px] font-semibold tracking-[-0.01em] text-[var(--color-sub-mid)]">
+                  {c.subKr}
                 </p>
-                <p className="kr-keep mt-5 max-w-[40ch] text-[13.5px] leading-[1.85] text-neutral-700 md:text-[14px]">
+                <p className="kr-keep mt-3 max-w-[40ch] text-[13.5px] font-light leading-[1.85] text-[var(--color-sub-mid)] md:text-[14px]">
                   {c.body}
                 </p>
               </div>
@@ -113,34 +105,33 @@ export default function About() {
           ))}
         </div>
 
-        {/* Bottom feature row — wide image with parallax */}
+        {/* Bottom feature row — autoplay video with TERRIS overlay */}
         <motion.div
-          ref={wideRef}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-20 aspect-[16/7] overflow-hidden md:mt-28"
-          data-cursor="view"
-          data-cursor-label="TERRIS"
+          className="relative mt-16 aspect-[16/9] overflow-hidden sm:aspect-[16/8] md:mt-28 md:aspect-[16/7]"
         >
-          <motion.div
-            style={{ y: wideY }}
-            className="absolute -inset-y-[12%] inset-x-0 bg-cover bg-center"
-          >
-            <div
-              className="h-full w-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${aboutLandscape})` }}
-            />
-          </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/30" />
-          <div className="container-x relative flex h-full flex-col justify-end pb-10 md:pb-16">
-            <p className="font-serif-en text-[clamp(48px,9vw,140px)] font-light leading-[1] text-white">
-              TERRIS
-            </p>
-            <p className="mt-5 text-[12px] uppercase tracking-[0.32em] text-white/80 md:mt-6 md:text-[14px]">
-              asset management
-            </p>
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src={aboutWideVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-black/25" />
+          <div className="container-x relative flex h-full flex-col justify-center pb-0">
+            <div className="text-center">
+              <p className="font-mono-display text-[clamp(56px,12vw,180px)] leading-[0.92] tracking-[-0.05em] text-white/95">
+                TERRIS
+              </p>
+              <p className="mt-3 font-mono-display text-[clamp(20px,4vw,56px)] leading-none tracking-[-0.04em] text-white/85 md:mt-4">
+                asset management
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>

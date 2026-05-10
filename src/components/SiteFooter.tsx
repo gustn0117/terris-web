@@ -42,31 +42,31 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-[12px] text-white/45 md:flex-row md:items-center md:justify-between">
-          <p>© {year} TERRIS partners. All rights reserved.</p>
-          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-[12px] text-[var(--color-sub-faint)] md:flex-row md:items-center md:justify-between">
+          <p className="font-serif-kr">© {year} TERRIS partners. All rights reserved.</p>
+          <ul className="flex flex-wrap items-center gap-x-6 gap-y-2 text-white/55">
             <li>
-              <a className="hover:text-white" href="#about">
+              <a className="transition-base hover:text-white" href="/">
                 회사소개
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href="#ceo">
+              <a className="transition-base hover:text-white" href="/ceo">
                 CEO
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href="#strategy">
+              <a className="transition-base hover:text-white" href="/strategy">
                 투자 및 전략
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href="#notice">
+              <a className="transition-base hover:text-white" href="/notice">
                 경영정보
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href="#">
+              <a className="transition-base hover:text-white" href="#">
                 개인정보처리방침
               </a>
             </li>
