@@ -54,11 +54,11 @@ const archivoBlack = Archivo_Black({
 export const metadata: Metadata = {
   title: "TERRIS · 테리스자산운용",
   description:
-    "변화의 가능성을 읽고, 부동산 가치를 극대화합니다. 부동산 펀드 전문가팀의 새로운 시작, 테리스(TERRIS).",
-  metadataBase: new URL("https://terris.example.com"),
+    "변화의 흐름을 읽고, 부동산 가치를 극대화합니다. 부동산 펀드 전문가팀의 새로운 시작, 테리스(TERRIS).",
+  metadataBase: new URL("https://terris-web.hsweb.pics"),
   openGraph: {
     title: "TERRIS · 테리스자산운용",
-    description: "변화의 가능성을 읽고, 부동산 가치를 극대화합니다.",
+    description: "변화의 흐름을 읽고, 부동산 가치를 극대화합니다.",
     type: "website",
     locale: "ko_KR",
   },
@@ -74,6 +74,17 @@ export default function RootLayout({
       lang="ko"
       className={`${notoSans.variable} ${notoSerif.variable} ${cormorant.variable} ${libreBodoni.variable} ${archivoBlack.variable} antialiased`}
     >
+      <head>
+        <link
+          rel="preconnect"
+          href="https://cdn.jsdelivr.net"
+          crossOrigin=""
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
+      </head>
       <body className="bg-[var(--color-bg)] text-[var(--color-fg)] font-sans">
         <SmoothScroll>
           <ScrollProgress />
