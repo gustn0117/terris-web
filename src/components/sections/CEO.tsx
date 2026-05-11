@@ -93,7 +93,7 @@ export default function CEO() {
                 alt={`${ceo.name} 서명`}
                 width={220}
                 height={80}
-                className="h-14 w-auto opacity-90 invert md:h-20"
+                className="h-16 w-auto opacity-95 md:h-24"
               />
             </div>
 
